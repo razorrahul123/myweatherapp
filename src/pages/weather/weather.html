@@ -1,0 +1,16 @@
+<script src="weather.ts"></script>
+<ion-header>
+  <ion-navbar>
+    <ion-title>Weather</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content  padding class="weather">
+  <ion-grid *ngIf="weather">
+    <ion-row>
+      <ion-col width-50 offset-25>
+        <h2 class="location">{{weather.display_location.full}}</h2>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
