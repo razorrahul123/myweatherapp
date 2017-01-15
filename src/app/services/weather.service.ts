@@ -9,6 +9,7 @@ export class WeatherService{
 
     apiKey:any;
     conditionsUrl:string;
+    searchUrl: string;
     static get parameters(){
       return [Http];
     }
@@ -17,10 +18,16 @@ export class WeatherService{
       this.http = http;
       console.log('Service Connected');
       this.apiKey ='353de1909e8a1523';
-      this.conditionsUrl = 'http://api.wunderground.com/api/'+this.apiKey+'/conditions/q';
+      this.conditionsUrl = 'http://localhost:8100/api/'+this.apiKey+'/conditions/q';
+      this.searchUrl = 'http://localhost:8100/search/aq?query=';
     }
-    getWeather(city,state){
-      return this.http.get(this.conditionsUrl+'/'+state + '/' +city+ '.json')
+    getWeather(zmw){
+      return this.http.get(this.conditionsUrl+'/zmw:'+zmw+'.json')
+        .map(res => res.json());
+    }
+
+    searchCities(searchStr){
+      return this.http.get(this.searchUrl+''+searchStr)
         .map(res => res.json());
     }
 }
